@@ -1,5 +1,11 @@
-FROM gcr.io/google-appengine/aspnetcore:2.0
-ADD ./ /app
-ENV ASPNETCORE_URLS=http://*:${PORT}
+FROM microsoft/dotnet:2.0-sdk
 WORKDIR /app
-ENTRYPOINT ["dotnet", "./KubeApp.dll"]
+
+# copy csproj and restore as distinct layers
+COPY *.csproj ./
+RUN dotnet restore
+
+# copy and build everything else
+COPY . ./
+RUN dotnet publish -c Release -o out
+ENTRYPOINT ["dotnet", "out/KubeApp.dll"]
