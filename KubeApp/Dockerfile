@@ -1,19 +1,5 @@
-FROM microsoft/dotnet:2.1-aspnetcore-runtime 
+FROM gcr.io/google-appengine/aspnetcore:2.0
+ADD ./ /app
+ENV ASPNETCORE_URLS=http://*:${PORT}
 WORKDIR /app
-EXPOSE 80
-
-FROM microsoft/dotnet:2.1-sdk 
-WORKDIR /src
-COPY ["KubeApp.csproj", ""]
-RUN dotnet restore "KubeApp.csproj"
-COPY . .
-WORKDIR "/src"
-RUN dotnet build "KubeApp.csproj" -c Release -o /app
-
-FROM microsoft/dotnet:2.1-sdk 
-RUN dotnet publish "KubeApp.csproj" -c Release -o /app
-
-FROM microsoft/dotnet:2.1-aspnetcore-runtime  
-WORKDIR /app
-COPY --from=publish /app .
 ENTRYPOINT ["dotnet", "KubeApp.dll"]
