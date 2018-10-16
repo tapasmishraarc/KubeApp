@@ -4,10 +4,10 @@ EXPOSE 80
 
 FROM microsoft/dotnet:2.1-sdk
 WORKDIR /src
-COPY . .
+COPY ["KubeApp.csproj", ""]
 RUN dotnet publish KubeApp.csproj -c Release -o /app
 WORKDIR /app
-COPY /app .
+COPY . .
 RUN dotnet build "KubeApp.csproj" -c Release -o /app
 
 FROM microsoft/dotnet:2.1-aspnetcore-runtime 
