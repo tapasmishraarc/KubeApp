@@ -1,7 +1,7 @@
 FROM microsoft/dotnet:2.1-sdk
 WORKDIR /app
 
-# copy csproj and restore as distinct layers.
+# copy csproj and restore as distinct layers
 COPY *.csproj ./
 RUN dotnet restore
 
