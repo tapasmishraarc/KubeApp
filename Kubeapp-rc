@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: kubeapp-rc
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: kubeapp-rc
+    spec:
+      containers:
+      - name: kubeapp-rc
+        image: gcr.io/devops-gke/kubeapp:latest
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kubeapp-rc
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    app: kubeapp-rc 
