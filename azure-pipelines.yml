@@ -19,3 +19,4 @@ steps:
     command: build
     projects: '**/*.csproj'
     arguments: '--configuration Release' # Update this to match your need
+- task: PublishBuildArtifacts@1
