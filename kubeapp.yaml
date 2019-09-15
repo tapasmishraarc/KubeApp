@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: kubeapp
-        image: gcr.io/devops-gke/kubeapp:latest
+        image: gcr.io/friendly-sensor-231509/kubeapp
         ports:
         - containerPort: 80
 ---
