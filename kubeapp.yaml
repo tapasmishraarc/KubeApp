@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: kubeapp
-        image: gcr.io/friendly-sensor-231509/kubeapp
+        image: gcr.io/storied-cider-265216/kubeapp
         ports:
         - containerPort: 80
 ---
